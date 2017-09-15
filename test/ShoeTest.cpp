@@ -8,7 +8,7 @@
 
 namespace bjsim4 {
 
-TEST_CASE( "Shoe constructors, manipulation", "[Card]" ) {
+TEST_CASE( "Shoe constructors, manipulation", "[Shoe]" ) {
 
     Shoe a( 1 ), b( 2 ), c( 4 );
 

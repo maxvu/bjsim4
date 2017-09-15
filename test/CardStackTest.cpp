@@ -6,7 +6,7 @@
 
 namespace bjsim4 {
 
-TEST_CASE( "CardStack constructors, accessors", "[Card]" ) {
+TEST_CASE( "CardStack constructors, accessors", "[CardStack]" ) {
 
     CardStack a;
     a.push( Card( Suit::DIAMONDS, Rank::TWO ) );
