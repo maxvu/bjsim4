@@ -19,6 +19,9 @@ namespace bjsim4 {
         CardStack ();
         CardStack ( const CardStack & other );
 
+        bool operator== ( const CardStack & other ) const;
+        bool operator!= ( const CardStack & other ) const;
+
         const std::vector<Card> & getCards () const;
         std::vector<Card> & getCards ();
 

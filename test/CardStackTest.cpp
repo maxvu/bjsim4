@@ -39,4 +39,23 @@ TEST_CASE( "CardStack constructors, accessors", "[CardStack]" ) {
 
 }
 
+TEST_CASE( "CardStack equality, inequality", "[CardStack]" ) {
+
+    CardStack a;
+    a.push( Card( Suit::DIAMONDS, Rank::TWO ) );
+    a.push( Card( Suit::DIAMONDS, Rank::FOUR ) );
+    a.push( Card( Suit::DIAMONDS, Rank::SIX ) );
+
+    CardStack b = a;
+
+    REQUIRE( b == a );
+    REQUIRE( a == b );
+
+    b.push( Card( Suit::SPADES, Rank::NINE ) );
+
+    REQUIRE( b != a );
+    REQUIRE( a != b );
+
+}
+
 };

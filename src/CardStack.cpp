@@ -13,6 +13,22 @@ CardStack::CardStack ( const CardStack & other ) : cards( other.cards ) {
 
 }
 
+bool CardStack::operator== ( const CardStack & other ) const {
+    if ( this->cards.size() != other.cards.size() ) {
+        return false;
+    }
+    for ( unsigned i = 0; i < this->cards.size(); i++ ) {
+        if ( this->cards[ i ] != other.cards[ i ] ) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool CardStack::operator!= ( const CardStack & other ) const {
+    return !( *this == other );
+}
+
 const std::vector<Card> & CardStack::getCards () const {
     return this->cards;
 }
