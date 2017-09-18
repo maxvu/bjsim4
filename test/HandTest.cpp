@@ -190,6 +190,25 @@ TEST_CASE( "Hand split", "[Hand]" ) {
 
     }
 
+    {
+        // Invalid splits throw std::exception.
+        try {
+            Hand().split();
+            REQUIRE( false );
+        } catch ( std::exception & ex ) {
+
+        }
+
+        try {
+            Hand().deal(
+                Card( Suit::DIAMONDS, Rank::NINE )
+            ).split();
+            REQUIRE( false );
+        } catch ( std::exception & ex ) {
+
+        }
+    }
+
 }
 
 };

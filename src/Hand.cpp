@@ -1,5 +1,7 @@
 #include "Hand.hpp"
 
+#include <stdexcept>
+
 namespace bjsim4 {
 
 HandDetail::HandDetail ( const Hand & hand ) {
@@ -102,8 +104,7 @@ Hand & Hand::deal ( const Card & card ) {
 
 std::vector<Hand> Hand::split () const {
     if ( this->stack.getSize() != 2 ) {
-        // TODO: probably should except here.
-        return std::vector<Hand>();
+        throw std::runtime_error( "Invalid Hand split()." );
     }
     return std::vector<Hand>({
         Hand().deal( this->stack.getCards()[ 0 ] ),
