@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Strategy.hpp"
 
 #include <string>
 #include <stdexcept>
@@ -7,12 +8,18 @@ namespace bjsim4 {
 
 Player::Player (
     const std::string & name,
-    double bankrollInit
+    double bankrollInit,
+    Strategy & strategy
 ) :
     name( name ),
-    bankroll( bankrollInit )
+    bankroll( bankrollInit ),
+    strategy( strategy )
 {
 
+}
+
+const Strategy & Player::getStrategy () const {
+    return this->strategy;
 }
 
 const std::string & Player::getName () const {
