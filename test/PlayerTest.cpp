@@ -6,8 +6,9 @@ namespace bjsim4 {
 TEST_CASE( "Player constructor, manipulation", "[Player]" ) {
 
     double tenThousand = 10000.00;
+    DealerStrategy strategy;
 
-    Player somePlayer( "somePlayer", tenThousand );
+    Player somePlayer( "somePlayer", tenThousand, strategy );
     REQUIRE( somePlayer.getName() == "somePlayer" );
     REQUIRE( somePlayer.getBankroll() == tenThousand );
 
