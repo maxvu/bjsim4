@@ -1,71 +1,45 @@
 #ifndef BJSIM4_HAND
 #define BJSIM4_HAND
 
-#include "CardStack.hpp"
+#include <string>
+#include <list>
+#include <pair>
 
-#include <vector>
+#include "Amount.hpp"
+#include "Card.hpp"
 
 namespace bjsim4 {
-
-    /*
-        ...
-    */
-
-    class Hand;
-
-    class HandDetail {
-
-        private:
-
-        enum Flags {
-            SOFT = 1,
-            PAIR = 2,
-            BLACKJACK = 4
-        };
-
-        uint8_t value;
-        uint8_t flags;
-
-        public:
-
-        HandDetail ( const Hand & hand );
-
-        uint8_t getLowValue () const;
-        uint8_t getHighValue () const;
-        uint8_t getBestValue () const;
-
-        bool isPair () const;
-        bool isSoft () const;
-        bool isHard () const;
-        bool isBust () const;
-        bool isBlackjack () const;
-        bool is21 () const;
-
-    };
 
     class Hand {
 
         protected:
 
-        CardStack stack;
-        std::vector<unsigned int> bets;
+        std::list<Card> cards;
 
         public:
 
         Hand ();
         Hand ( const Hand & other );
-        Hand ( const Card & first, const Card & second );
 
-        const std::vector<Card> & getCards () const;
+        Hand & deal ( Card card );
 
-        Hand & deal ( const Card & card );
-        std::vector<Hand> split () const;
+        bool operator<  ( const Hand & other ) const;
+        bool operator>  ( const Hand & other ) const;
+        bool operator== ( const Hand & other ) const;
+        bool operator!= ( const Hand & other ) const;
+        bool operator<= ( const Hand & other ) const;
+        bool operator>= ( const Hand & other ) const;
 
-        HandDetail getDetail () const;
+        bool isHard () const;
+        bool isSoft () const;
+        bool isPair () const;
+        bool isBust () const;
+        bool isBlackjack () const;
 
-        Hand & addBet ( unsigned int bet );
-        const std::vector<unsigned int> & getBets () const;
-        uint8_t getBetCount () const;
+        unsigned char getValue () const;
+        const std::list<Card> & getCards () const;
+
+        std::string toString () const;
 
     };
 
