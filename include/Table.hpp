@@ -1,45 +1,57 @@
 #ifndef BJSIM4_TABLE
 #define BJSIM4_TABLE
 
+#include "Config.hpp"
+#include "Error.hpp"
+
 namespace bjsim4 {
 
-    class TableRuleset {
+    class Seat {
+
+        protected:
+
+        std::string name;
+        Amount bankroll;
+        Strategy & strategy;
 
         public:
 
-        /* Bet */
+        Seat (
+            const std::string & name,
+            const Amount & amount,
+            const Strategy & strategy
+        );l
 
-        unsigned long minBet;
-        unsigned long maxBet;
-        unsigned long betStep;
+        const std::string & getName ();
+        Amount & getBankroll ();
+        Strategy & getStrategy();
+        Hand & getCurrentHand ();
 
-        /* Dealer */
+        const Amount & getBankroll () const;
+        const Hand & getCurrentHand () const;
 
-        bool hitSoft17;
-        bool peekTens;
-        bool peekAces;
+    };
 
-        /* Insurance */
+    class Table {
 
-        bool insurance;
-        double insurancePayout;
+        protected:
 
-        /* Play */
+        Config config;
+        std::vector<Seat> seats;
+        Shoe shoe;
 
-        bool restrictedDouble; // only on 10's and 11's
-        bool doubleAfterSplit;
-        bool splitUnlikeTens;
-        bool resplitAces;
-        bool acesHalt;
-        bool surrender;
-        bool earlySurrender;
-        unsigned char maxHands;
+        public:
 
-        /* Cards */
+        Table ( const Config & config );
 
-        unsigned int deckCount;
-        bool continuousShuffle;
-        double maxPenetration;
+        Table & addPlayer (
+            std::string name,
+            const Strategy & strategy
+        );
+
+        const Config & getConfig () const;
+        const std::vector<Seat> & getSeats () const;
+        const Shoe & getShoe () const;
 
     };
 

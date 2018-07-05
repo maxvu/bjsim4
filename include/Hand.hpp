@@ -26,9 +26,6 @@ namespace bjsim4 {
         bool operator<  ( const Hand & other ) const;
         bool operator>  ( const Hand & other ) const;
         bool operator== ( const Hand & other ) const;
-        bool operator!= ( const Hand & other ) const;
-        bool operator<= ( const Hand & other ) const;
-        bool operator>= ( const Hand & other ) const;
 
         bool isHard () const;
         bool isSoft () const;
