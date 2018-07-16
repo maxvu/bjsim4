@@ -1,8 +1,11 @@
 #ifndef BJSIM4_TABLE
 #define BJSIM4_TABLE
 
+#include <vector>
+
 #include "Config.hpp"
 #include "Error.hpp"
+#include "Player.hpp"
 
 namespace bjsim4 {
 
@@ -20,7 +23,7 @@ namespace bjsim4 {
             const std::string & name,
             const Amount & amount,
             const Strategy & strategy
-        );l
+        );
 
         const std::string & getName ();
         Amount & getBankroll ();
@@ -42,11 +45,9 @@ namespace bjsim4 {
 
         public:
 
-        Table ( const Config & config );
-
-        Table & addPlayer (
-            std::string name,
-            const Strategy & strategy
+        Table (
+            const Config & config,
+            std::list<Player> players
         );
 
         const Config & getConfig () const;

@@ -7,29 +7,18 @@
 
 namespace bjsim4 {
 
-    class ShoeCount {
 
-        protected:
-
-        unsigned int values[ 13 ];
-
-        public:
-
-        ShoeCount ( unsigned int deckCount );
-
-        ShoeCount & remove ( Card card );
-        double getProbability ( Rank rank ) const;
-        double getProbabilityTenCard () const;
-
-    };
+    class ShoeCount;
 
     class Shoe {
 
         protected:
 
-        unsigned int deckCount;
-        std::list<Card> cards;
-        ShoeCount count;
+        std::list<Card> toDraw;
+        std::list<Card> discarded;
+        unsigned long values[ 13 ]; // A -> K
+
+        Shoe & shuffle ();
 
         public:
 
@@ -37,11 +26,12 @@ namespace bjsim4 {
         Shoe ( const Shoe & other );
 
         Card draw ();
-        Shoe & reset ();
-
-        double getPenetration () const;
-        const ShoeCount & getCount () const;
+        Shoe & reshuffle ();
+        double getRankIncidence ( Rank rank );
+        double getValueIncidence ( unsigned char Value );
 
     };
 
 };
+
+#endif

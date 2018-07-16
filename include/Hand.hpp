@@ -3,7 +3,7 @@
 
 #include <string>
 #include <list>
-#include <pair>
+#include <utility>
 
 #include "Amount.hpp"
 #include "Card.hpp"
@@ -15,6 +15,7 @@ namespace bjsim4 {
         protected:
 
         std::list<Card> cards;
+        Amount bet;
 
         public:
 
@@ -22,10 +23,8 @@ namespace bjsim4 {
         Hand ( const Hand & other );
 
         Hand & deal ( Card card );
-
-        bool operator<  ( const Hand & other ) const;
-        bool operator>  ( const Hand & other ) const;
-        bool operator== ( const Hand & other ) const;
+        Amount & getBet ();
+        const Amount & getBet () const;
 
         bool isHard () const;
         bool isSoft () const;

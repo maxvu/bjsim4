@@ -1,4 +1,3 @@
-fa
 #ifndef BJSIM4_STRATEGY
 #define BJSIM4_STRATEGY
 
@@ -17,62 +16,16 @@ namespace bjsim4 {
         SURRENDER
     };
 
-    class Option {
-
-        public:
-
-        const Table & getTable () const;
-
-    };
-
-    class HandOption : public Option {
-
-        protected:
-
-        const Table & table;
-        const Hand & hand;
-        const Amount & bet;
-
-        public:
-
-        HandOption (
-            const Hand & hand,
-            const Table & table,
-            const Amount & bet
-        );
-
-        const Hand & getHand () const;
-
-        bool canDouble () const;
-        bool canSplit  () const;
-        bool canSurrender () const;
-
-    };
-
-    class BetOption {
-
-        protected:
-
-        const Table & table;
-        const Hand & hand;
-        const Amount & bet;
-
-        public:
-
-        BetOption ();
-
-
-
-    };
-
     class Strategy {
 
         public:
 
         Amount decideBet ( const BetOption & option );
+        Amount decideInsurance ( const InsuranceOption & option );
         HandDecision decideHand ( const HandOption & option );
-        InsuranceDecision decideInsurance ( const InsuranceOption & option );
 
     };
 
 };
+
+#endif

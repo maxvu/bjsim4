@@ -11,6 +11,20 @@ namespace bjsim4 {
 
     };
 
+    class InvalidConfigError : public Error {
+
+        public:
+
+        InvalidConfigError(
+            const char * optionName,
+            const char * givenValue,
+            const char * reason
+        );
+
+        const char * getMessage ();
+
+    };
+
 };
 
 #endif

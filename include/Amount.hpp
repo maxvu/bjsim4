@@ -14,7 +14,10 @@ namespace bjsim4 {
         Amount ();
         Amount ( const Amount & other );
 
-        operator unsigned long & (); 
+        operator unsigned long ();
+        Amount & operator+= ( unsigned long u );
+        Amount & operator-= ( unsigned long u );
+        Amount & operator= ( unsigned long u );
 
     };
 

@@ -11,7 +11,11 @@ namespace bjsim4 {
         unsigned long maxBet;
         unsigned long betStep;
 
-        BetConfig ();
+        BetConfig (
+            unsigned long minBet,
+            unsigned long maxBet,
+            unsigned long betStep
+        );
 
     };
 
@@ -23,24 +27,45 @@ namespace bjsim4 {
         bool peekTens;
         bool peekAces;
 
-        DealerConfig ();
+        DealerConfig (
+            bool hitSoft17,
+            bool peekTens,
+            bool peekAces
+        );
 
+    };
+
+    enum SurrenderConfig {
+        NONE,
+        EARLY,
+        LATE
     };
 
     class PlayConfig {
 
         public:
 
-        bool restrictedDouble;
+        bool restrictedDouble;      // may only double on 10 or 11
         bool doubleAfterSplit;
         bool splitUnlikeTens;
         bool resplitAces;
-        bool acesHalt;
-        bool surrender;
-        bool earlySurrender;
-        unsigned char maxHands;
+        bool acesHalt;             // cannot play split aces
+        bool dealerWinsTies;
+        SurrenderConfig surrender;
+        unsigned char maxHands;    // # splits allowed + 1
+        double blackjackPayout;
 
-        PlayConfig ();
+        PlayConfig (
+            bool restrictedDouble,
+            bool doubleAfterSplit,
+            bool splitUnlikeTens,
+            bool resplitAces,
+            bool acesHalt,
+            bool dealerWinsTies,
+            SurrenderConfig surrender,
+            unsigned char maxHands,
+            double blackjackPayout
+        );
 
     };
 
@@ -52,7 +77,21 @@ namespace bjsim4 {
         bool continuousShuffle;
         double maxPenetration;
 
-        CardsConfig ();
+        CardsConfig (
+            unsigned int deckCount,
+            bool continuousShuffle,
+            double maxPenetration
+        );
+
+    };
+
+    class InsuranceConfig {
+
+        public:
+
+        double payout;
+
+        InsuranceConfig ( double payout );
 
     };
 
@@ -64,8 +103,15 @@ namespace bjsim4 {
         DealerConfig dealer;
         PlayConfig play;
         CardsConfig cards;
+        InsuranceConfig insurance;
 
-        Config ();
+        Config (
+            BetConfig bets,
+            DealerConfig dealer,
+            PlayConfig play,
+            CardsConfig cards,
+            InsuranceConfig insurance
+        );
 
     };
 
